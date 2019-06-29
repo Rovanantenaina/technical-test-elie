@@ -1,4 +1,4 @@
-package fr.mnj.common;
+package fr.era.common;
 
 import java.util.logging.Logger;
 
