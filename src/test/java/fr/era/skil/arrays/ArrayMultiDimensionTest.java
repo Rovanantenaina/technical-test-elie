@@ -1,4 +1,4 @@
-package fr.mnj.skil.arrays;
+package fr.era.skil.arrays;
 
 import org.junit.Test;
 
