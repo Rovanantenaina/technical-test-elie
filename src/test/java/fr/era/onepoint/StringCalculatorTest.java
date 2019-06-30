@@ -25,6 +25,7 @@ public class StringCalculatorTest {
     private static final String CHAINE_AVEC_NOUVEAU_LINE_OK_2 = "1\n4,5\n6";
     private static final String CHAINE_AVEC_NOUVEAU_LINE_KO_1 = "1\n,4";
     private static final String CHAINE_AVEC_NOUVEAU_LINE_KO_2 = "1\n4,5,\n6";
+    private static final String CHAINE_AVEC_NON_CHIFFRE_KO = "1,a,5";
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_LINE_OK_1 = 5;
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_LINE_OK_2 = 16;
 
@@ -69,5 +70,10 @@ public class StringCalculatorTest {
     public void calculerChaineAvecNouveauLigneMalFormater1Test() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(CHAINE_AVEC_NOUVEAU_LINE_KO_1));
         Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(CHAINE_AVEC_NOUVEAU_LINE_KO_2));
+    }
+
+    @Test
+    public void calculerChaineAvecNonChiffreTest() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(CHAINE_AVEC_NON_CHIFFRE_KO));
     }
 }
