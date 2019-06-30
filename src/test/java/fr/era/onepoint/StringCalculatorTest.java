@@ -1,13 +1,14 @@
 package fr.era.onepoint;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 /**
  * Created by Elie RASOANAIVO on 30/06/2019.
+ * Classe de teste et exemple d'utilisation des fonctionnalités du calculateur de chaine de caractère.
+ * Utilisant JUNIT 5
  *
  * @version 1.0
- *          <p>
- *          Classe de teste et exemple d'utilisation des fonctionnalités du calculateur de chaine de caractère.
  * @since 1.0
  */
 public class StringCalculatorTest {
@@ -25,7 +26,7 @@ public class StringCalculatorTest {
     private static final String CHAINE_AVEC_NOUVEAU_LINE_KO_1 = "1\n,4";
     private static final String CHAINE_AVEC_NOUVEAU_LINE_KO_2 = "1\n4,5,\n6";
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_LINE_OK_1 = 5;
-    private static final int RESULT_CHAINE_AVEC_NOUVEAU_LINE_OK_2 = 15;
+    private static final int RESULT_CHAINE_AVEC_NOUVEAU_LINE_OK_2 = 16;
 
 
     private static final int RESULT_VALEUR_PAR_DEFAUT = 0;
@@ -65,8 +66,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void calculerChaineAvecNouveauLigneMalFormaterTest() {
-        assert RESULT_VALEUR_PAR_DEFAUT == stringCalculator.add(CHAINE_AVEC_NOUVEAU_LINE_KO_1);
-        assert RESULT_VALEUR_PAR_DEFAUT == stringCalculator.add(CHAINE_AVEC_NOUVEAU_LINE_KO_2);
+    public void calculerChaineAvecNouveauLigneMalFormater1Test() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(CHAINE_AVEC_NOUVEAU_LINE_KO_1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(CHAINE_AVEC_NOUVEAU_LINE_KO_2));
     }
 }
