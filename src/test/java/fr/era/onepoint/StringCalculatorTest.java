@@ -31,6 +31,7 @@ public class StringCalculatorTest {
 
     private static final String CHAINE_AVEC_NOUVEAU_DELIMITEUR_1 = "//;\n1;2;5;10";
     private static final String CHAINE_AVEC_NOUVEAU_DELIMITEUR_2 = "//:\n4:2:5:10";
+    private static final String CHAINE_AVEC_NOUVEAU_DELIMITEUR_KO = "//:\n4:2,5:10";
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_1 = 18;
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_2 = 21;
 
@@ -86,5 +87,12 @@ public class StringCalculatorTest {
     public void calculerChaineAvecDelimiteurSpecifiqueTest() {
         assert RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_1 == stringCalculator.add(CHAINE_AVEC_NOUVEAU_DELIMITEUR_1);
         assert RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_2 == stringCalculator.add(CHAINE_AVEC_NOUVEAU_DELIMITEUR_2);
+    }
+
+    @Test
+    public void calculerChaineAvecNouveauDelimiteurMalFormater1Test() {
+        IllegalArgumentException illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class,
+                () -> stringCalculator.add(CHAINE_AVEC_NOUVEAU_DELIMITEUR_KO));
+        assert illegalArgumentException.getMessage().endsWith("2,5");
     }
 }
