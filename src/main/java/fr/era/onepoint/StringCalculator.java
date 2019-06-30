@@ -26,6 +26,7 @@ public class StringCalculator {
     private static final String REGEX_NOMBRE_SEULEMENT = "-?\\d*";
     private static final String DEFAULT_DELIMITER = ",";
     private static final String NEW_LINE_DELIMITER = "\\n";
+    private static final Integer MAX_NOMBRE = 1000;
     private String regexDelimiter;
 
     int add(String nombres) {
@@ -58,7 +59,7 @@ public class StringCalculator {
                     if (!nombre.matches(REGEX_NOMBRE_SEULEMENT)) {
                         throw new IllegalArgumentException(MessageFormat.format(EXCEPTION_PARAMETER_MAL_FORMATER, nombre));
                     }
-                    return true;
+                    return Integer.valueOf(nombre) <= MAX_NOMBRE;
                 })
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());

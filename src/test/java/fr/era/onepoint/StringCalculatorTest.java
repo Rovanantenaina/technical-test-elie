@@ -39,6 +39,10 @@ public class StringCalculatorTest {
     private static final String CHAINE_AVEC_NOMBRE_NEGATIF_1 = "//:\n4:2:5:-10";
     private static final String CHAINE_AVEC_NOMBRE_NEGATIF_2 = "//:\n4:2:-5:-10";
 
+    private static final String CHAINE_AVEC_NOMBRE_PLUS_1000_1 = "//:\n4:2:1001:10";
+    private static final String CHAINE_AVEC_NOMBRE_PLUS_1000_2 = "//:\n1002:2:1001:10";
+    private static final int RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_1 = 16;
+    private static final int RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_2 = 12;
 
     private static final int RESULT_VALEUR_PAR_DEFAUT = 0;
 
@@ -109,5 +113,11 @@ public class StringCalculatorTest {
         illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class,
                 () -> stringCalculator.add(CHAINE_AVEC_NOMBRE_NEGATIF_2));
         assert illegalArgumentException.getMessage().endsWith("[-5, -10]");
+    }
+
+    @Test
+    public void calculerChaineNombrePlus1000Test() {
+        assert RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_1 == stringCalculator.add(CHAINE_AVEC_NOMBRE_PLUS_1000_1);
+        assert RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_2 == stringCalculator.add(CHAINE_AVEC_NOMBRE_PLUS_1000_2);
     }
 }
