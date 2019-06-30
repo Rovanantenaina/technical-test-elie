@@ -36,6 +36,10 @@ public class StringCalculatorTest {
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_2 = 21;
 
 
+    private static final String CHAINE_AVEC_NOMBRE_NEGATIF_1 = "//:\n4:2:5:-10";
+    private static final String CHAINE_AVEC_NOMBRE_NEGATIF_2 = "//:\n4:2:-5:-10";
+
+
     private static final int RESULT_VALEUR_PAR_DEFAUT = 0;
 
     private StringCalculator stringCalculator = new StringCalculator();
@@ -94,5 +98,16 @@ public class StringCalculatorTest {
         IllegalArgumentException illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class,
                 () -> stringCalculator.add(CHAINE_AVEC_NOUVEAU_DELIMITEUR_KO));
         assert illegalArgumentException.getMessage().endsWith("2,5");
+    }
+
+    @Test
+    public void calculerChaineAvecNegatifNombreTest() {
+        IllegalArgumentException illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class,
+                () -> stringCalculator.add(CHAINE_AVEC_NOMBRE_NEGATIF_1));
+        assert illegalArgumentException.getMessage().endsWith("[-10]");
+
+        illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class,
+                () -> stringCalculator.add(CHAINE_AVEC_NOMBRE_NEGATIF_2));
+        assert illegalArgumentException.getMessage().endsWith("[-5, -10]");
     }
 }
