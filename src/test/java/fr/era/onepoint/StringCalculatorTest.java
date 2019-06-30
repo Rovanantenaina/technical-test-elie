@@ -29,6 +29,11 @@ public class StringCalculatorTest {
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_LINE_OK_1 = 5;
     private static final int RESULT_CHAINE_AVEC_NOUVEAU_LINE_OK_2 = 16;
 
+    private static final String CHAINE_AVEC_NOUVEAU_DELIMITEUR_1 = "//;\n1;2;5;10";
+    private static final String CHAINE_AVEC_NOUVEAU_DELIMITEUR_2 = "//:\n4:2:5:10";
+    private static final int RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_1 = 18;
+    private static final int RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_2 = 21;
+
 
     private static final int RESULT_VALEUR_PAR_DEFAUT = 0;
 
@@ -75,5 +80,11 @@ public class StringCalculatorTest {
     @Test
     public void calculerChaineAvecNonChiffreTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add(CHAINE_AVEC_NON_CHIFFRE_KO));
+    }
+
+    @Test
+    public void calculerChaineAvecDelimiteurSpecifiqueTest() {
+        assert RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_1 == stringCalculator.add(CHAINE_AVEC_NOUVEAU_DELIMITEUR_1);
+        assert RESULT_CHAINE_AVEC_NOUVEAU_DELIMITEUR_2 == stringCalculator.add(CHAINE_AVEC_NOUVEAU_DELIMITEUR_2);
     }
 }
