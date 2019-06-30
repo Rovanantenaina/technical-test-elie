@@ -2,8 +2,10 @@ package fr.era.onepoint;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Created by Elie RASOANAIVO on 30/06/2019.
@@ -31,20 +33,23 @@ public class StringCalculator {
     }
 
     private int getSommeNombre(String nombres) {
-        return Arrays.stream(getListeNombreStream(nombres))
+        List<Integer> listeNombre = getListeNombreStream(nombres);
+        return listeNombre.stream()
+                .mapToInt(Integer::valueOf)
+                .sum();
+    }
+
+    private List<Integer> getListeNombreStream(String nombres) {
+        nombres = removeDelimiterHeadIfExist(nombres);
+        return Arrays.stream(nombres.split(regexDelimiter))
                 .filter((String nombre) -> {
                     if (!nombre.matches(REGEX_NOMBRE_SEULEMENT)) {
                         throw new IllegalArgumentException(MessageFormat.format(EXCEPTION_PARAMETER_MAL_FORMATER, nombre));
                     }
                     return true;
                 })
-                .mapToInt(Integer::valueOf)
-                .sum();
-    }
-
-    private String[] getListeNombreStream(String nombres) {
-        nombres = removeDelimiterHeadIfExist(nombres);
-        return nombres.split(regexDelimiter);
+                .map(Integer::valueOf)
+                .collect(Collectors.toList());
     }
 
     private String removeDelimiterHeadIfExist(String nombres) {
