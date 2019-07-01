@@ -44,6 +44,10 @@ public class StringCalculatorTest {
     private static final int RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_1 = 16;
     private static final int RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_2 = 12;
 
+
+    private static final String CHAINE_AVEC_COMPLEXE_DELIMITEUR = "//:::\n1002:  ::2:::1001   :::10";
+    private static final int RESULT_CHAINE_AVEC_COMPLEXE_DELIMITEUR = 12;
+
     private static final int RESULT_VALEUR_PAR_DEFAUT = 0;
 
     private StringCalculator stringCalculator = new StringCalculator();
@@ -119,5 +123,10 @@ public class StringCalculatorTest {
     public void calculerChaineNombrePlus1000Test() {
         assert RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_1 == stringCalculator.add(CHAINE_AVEC_NOMBRE_PLUS_1000_1);
         assert RESULT_CHAINE_AVEC_NOMBRE_PLUS_1000_2 == stringCalculator.add(CHAINE_AVEC_NOMBRE_PLUS_1000_2);
+    }
+
+    @Test
+    public void calculerChaineAvecDelimiteurComolexeTest() {
+        assert RESULT_CHAINE_AVEC_COMPLEXE_DELIMITEUR == stringCalculator.add(CHAINE_AVEC_COMPLEXE_DELIMITEUR);
     }
 }

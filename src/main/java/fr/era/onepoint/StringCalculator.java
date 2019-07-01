@@ -21,9 +21,10 @@ public class StringCalculator {
     private static final String EXCEPTION_PARAMETER_NON_NULL = "Le paramètre ne peut pas être NULL";
     private static final String EXCEPTION_PARAMETER_MAL_FORMATER = "La chaine passé en paramètre est mal formater ou n''as pas une valeur numérique : {0}";
     private static final String EXCEPTION_PARAMETER_NEGATIF_NUMBER = "La chaine passé en paramètre continent des valeurs négative \\n {0}";
-    private static final String REGEX_BASE_DELIMITER = "[{0}{1}]";
-    private static final String REGEX_SPECIFIC_DELIMITER = "^(//(.)\\n).*$";
+    private static final String REGEX_BASE_DELIMITER = "{0}|{1}";
+    private static final String REGEX_SPECIFIC_DELIMITER = "^(//(.*)\\n).*$";
     private static final String REGEX_NOMBRE_SEULEMENT = "-?\\d*";
+    private static final String REGEX_CHAINE_BLANCHE_NON_RETOUR_A_LA_LIGNE = "[\\s&&[^\\n]]";
     private static final String DEFAULT_DELIMITER = ",";
     private static final String NEW_LINE_DELIMITER = "\\n";
     private static final Integer MAX_NOMBRE = 1000;
@@ -32,7 +33,7 @@ public class StringCalculator {
     int add(String nombres) {
         if (null == nombres) throw new IllegalArgumentException(EXCEPTION_PARAMETER_NON_NULL);
         if (nombres.isEmpty()) return 0;
-        return getSommeNombre(nombres);
+        return getSommeNombre(nombres.replaceAll(REGEX_CHAINE_BLANCHE_NON_RETOUR_A_LA_LIGNE, ""));
     }
 
     private int getSommeNombre(String nombres) {
